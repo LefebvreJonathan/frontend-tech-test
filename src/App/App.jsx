@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.scss';
 import {
   BrowserRouter as Router,
@@ -15,11 +15,15 @@ import {
   setMarvelLoading, setMarvelError, setMarvelCharacters,
 } from '../actions';
 
+const KEYS_NEED_PRESSED_TO_CONTINUE = ['Enter'];
+
 function App() {
-  const search = 'spider';
+  const [search, setSearch] = useState('');
   const [marvelState, dispatch] = useReducer(marvelReducer, marvelDefaultState);
 
-  const onSearch = () => {
+  const handleChange = (event) => {
+    if (!KEYS_NEED_PRESSED_TO_CONTINUE.includes(event.key)) return;
+
     dispatch(setMarvelLoading());
     searchCharacters(search).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination)))
       .catch((error) => dispatch(setMarvelError(error.message)));
@@ -28,9 +32,9 @@ function App() {
   return (
 	<>
 		<Router>
-			<Header />
+			<Header onChange={(value) => setSearch(value)} onKeyPress={handleChange} />
+			<p>{search}</p>
 			<p>{marvelState.characters.length}</p>
-			<button onClick={onSearch}>Button</button>
 			<Switch>
 				<Route
 					exact
