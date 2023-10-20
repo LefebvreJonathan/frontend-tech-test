@@ -1,9 +1,11 @@
 import axios from 'axios';
 import md5 from 'md5';
 
+const MAX_BEFORE_TIMEOUT = 3000;
+
 const instance = axios.create({
   baseURL: 'https://gateway.marvel.com/v1/public/',
-  timeout: 3000,
+  timeout: MAX_BEFORE_TIMEOUT,
 });
 
 // https://developer.marvel.com/documentation/authorization
