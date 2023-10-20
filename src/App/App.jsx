@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useReducer } from 'react';
 import './App.scss';
 import {
   BrowserRouter as Router,
@@ -8,15 +8,29 @@ import {
 } from 'react-router-dom';
 import Header from '../components/Header';
 import { searchCharacters } from '../services';
+import {
+  marvelReducer, marvelDefaultState,
+} from '../reducers';
+import {
+  setMarvelLoading, setMarvelError, setMarvelCharacters,
+} from '../actions';
 
 function App() {
   const search = 'spider';
+  const [marvelState, dispatch] = useReducer(marvelReducer, marvelDefaultState);
 
-  searchCharacters(search).then((characters) => console.log(characters));
+  const onSearch = () => {
+    dispatch(setMarvelLoading());
+    searchCharacters(search).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination)))
+      .catch((error) => dispatch(setMarvelError(error.message)));
+  };
+
   return (
 	<>
 		<Router>
 			<Header />
+			<p>{marvelState.characters.length}</p>
+			<button onClick={onSearch}>Button</button>
 			<Switch>
 				<Route
 					exact
