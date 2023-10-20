@@ -1,1 +1,1 @@
-export * from './marvelService';
+export * from './marvel.service';
