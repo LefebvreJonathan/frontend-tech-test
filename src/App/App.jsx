@@ -17,13 +17,14 @@ import {
 } from '../actions';
 
 const KEYS_NEED_PRESSED_TO_CONTINUE = ['Enter'];
+const MINIMUM_LENGTH_TO_SUBMIT = 0;
 
 function App() {
   const [search, setSearch] = useState('');
   const [marvelState, dispatch] = useReducer(marvelReducer, marvelDefaultState);
 
   const handleChange = (event) => {
-    if (!KEYS_NEED_PRESSED_TO_CONTINUE.includes(event.key)) return;
+    if (!KEYS_NEED_PRESSED_TO_CONTINUE.includes(event.key) || search.length <= MINIMUM_LENGTH_TO_SUBMIT) return;
 
     dispatch(setMarvelLoading());
     searchCharacters(search).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination)))
