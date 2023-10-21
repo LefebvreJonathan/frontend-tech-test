@@ -7,6 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Header from '../components/Header';
+import CharacterBanner from '../components/CharacterBanner';
 import { searchCharacters } from '../services';
 import {
   marvelReducer, marvelDefaultState,
@@ -33,14 +34,14 @@ function App() {
 	<>
 		<Router>
 			<Header onChange={(value) => setSearch(value)} onKeyPress={handleChange} />
-			<p>{search}</p>
-			<p>{marvelState.characters.length}</p>
 			<Switch>
 				<Route
 					exact
 					path="/"
 				>
-					<section className="lumx-spacing-padding-horizontal-huge" />
+					<section className="lumx-spacing-padding-horizontal-huge characters-list">
+						{marvelState.characters.map((character) => <CharacterBanner key={character.name} character={character} />)}
+					</section>
 				</Route>
 			</Switch>
 		</Router>
