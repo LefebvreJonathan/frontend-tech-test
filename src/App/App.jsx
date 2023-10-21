@@ -7,6 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Header from '../components/Header';
+import CharacterBanner from '../components/CharacterBanner';
 import { searchCharacters } from '../services';
 import {
   marvelReducer, marvelDefaultState,
@@ -16,13 +17,14 @@ import {
 } from '../actions';
 
 const KEYS_NEED_PRESSED_TO_CONTINUE = ['Enter'];
+const MINIMUM_LENGTH_TO_SUBMIT = 0;
 
 function App() {
   const [search, setSearch] = useState('');
   const [marvelState, dispatch] = useReducer(marvelReducer, marvelDefaultState);
 
   const handleChange = (event) => {
-    if (!KEYS_NEED_PRESSED_TO_CONTINUE.includes(event.key)) return;
+    if (!KEYS_NEED_PRESSED_TO_CONTINUE.includes(event.key) || search.length <= MINIMUM_LENGTH_TO_SUBMIT) return;
 
     dispatch(setMarvelLoading());
     searchCharacters(search).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination)))
@@ -33,14 +35,14 @@ function App() {
 	<>
 		<Router>
 			<Header onChange={(value) => setSearch(value)} onKeyPress={handleChange} />
-			<p>{search}</p>
-			<p>{marvelState.characters.length}</p>
 			<Switch>
 				<Route
 					exact
 					path="/"
 				>
-					<section className="lumx-spacing-padding-horizontal-huge" />
+					<section className="lumx-spacing-padding-horizontal-huge characters-list">
+						{marvelState.characters.map((character) => <CharacterBanner key={character.name} character={character} />)}
+					</section>
 				</Route>
 			</Switch>
 		</Router>
