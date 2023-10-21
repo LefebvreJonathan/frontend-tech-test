@@ -18,7 +18,13 @@ const initPagination = (total, currentPage, itemsPerPage) => {
   };
 };
 
-const transformCharacters = (rawCharacters) => rawCharacters.map(({ name, description, thumbnail }) => new MarvelCharacter({ name, description, thumbnail: `${thumbnail.path}.${thumbnail.extension}` }));
+const removeReplacementCharacter = (text) => text.replace(/ï¿½/g, "'");
+
+const transformCharacters = (rawCharacters) => rawCharacters.map(({
+  name, description, thumbnail, comics, series, stories,
+}) => new MarvelCharacter({
+  name, description: removeReplacementCharacter(description), thumbnail: `${thumbnail.path}.${thumbnail.extension}`, comicsCount: comics.available, seriesCount: series.available, storiesCount: stories.available,
+}));
 
 export const searchCharacters = (search, page = DEFAULT_PAGE, itemsPerPage = DEFAULT_ITEMS_PER_PAGE) => get(GET_CHARACTERS_ROUTE, { nameStartsWith: search, limit: itemsPerPage, offset: page })
   .then((response) => {
