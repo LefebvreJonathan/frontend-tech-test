@@ -1,0 +1,33 @@
+.alert {
+  padding: 20px;
+  color: white;
+  background-color: cadetblue;
+  margin-bottom: 15px;
+  font-weight: bold;
+
+  &.error {
+    background-color: #f44336;
+  }
+
+  &.hide {
+    display: none;
+  }
+}
+
+.close-btn {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: inherit;
+  color: white;
+  border: none;
+
+  &:hover {
+    color: black;
+  }
+}
+
