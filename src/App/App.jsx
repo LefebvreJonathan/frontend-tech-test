@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useReducer, useState } from 'react';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,14 +10,16 @@ import {
   setMarvelLoading, setMarvelError, setMarvelCharacters,
 } from '../actions';
 
+import Alert from '../components/Alert';
 import CharacterBanner from '../components/CharacterBanner';
 import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 
-import { searchCharacters } from '../services';
 import {
   marvelReducer, marvelDefaultState,
 } from '../reducers';
+
+import { searchCharacters } from '../services';
 
 import LoadingPage from './Loading';
 
@@ -55,6 +56,7 @@ function App() {
 				exact
 				path="/"
 			>
+				{marvelState.error && <Alert type="error" message={marvelState.error} />}
 				{marvelState.loading && <LoadingPage />}
 				<section className="lumx-spacing-padding-horizontal-huge characters-list">
 					{marvelState.characters.map((character) => <CharacterBanner key={character.name} character={character} />)}
