@@ -5,6 +5,10 @@
     padding: 1.5em;
     border: 0.4em solid lumx-color-variant('primary', 'N');
     border-radius: 10px;
+    
+    @media (max-width: 30em) {
+        grid-template-columns: none;
+    }
 
     .thumbnail {
         grid-row: 1;
