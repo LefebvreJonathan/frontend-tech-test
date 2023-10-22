@@ -1,0 +1,37 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+
+    .more-elements {
+        margin: 0.4em;
+        padding: 0.4em 0.6em;
+        font-weight: bold;
+    }
+
+    .button-page {
+        color: lumx-color-variant('primary', 'N');
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        padding: 0.4em 0.6em;
+        font-weight: bold;
+        margin: 0 2px;
+
+        &.active {
+            background-color: lumx-color-variant('primary', 'N');
+            color: white;
+        }
+
+    
+        &:not(.active) {
+            cursor: pointer;
+            &:hover {
+                background-color: lumx-color-variant('yellow', 'L2');
+            }
+        }
+    
+    }
+}
