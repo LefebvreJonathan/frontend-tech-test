@@ -27,6 +27,9 @@ const transformCharacters = (rawCharacters) => rawCharacters.map(({
 }));
 
 export const searchCharacters = (search, page = DEFAULT_PAGE, itemsPerPage = DEFAULT_ITEMS_PER_PAGE) => get(GET_CHARACTERS_ROUTE, { nameStartsWith: search, limit: itemsPerPage, offset: itemsPerPage * page })
+  .catch((error) => {
+    throw new Error(error.message);
+  })
   .then((response) => {
     const { data: { data } } = response;
 
