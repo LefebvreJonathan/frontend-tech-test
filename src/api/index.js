@@ -24,6 +24,8 @@ const get = (url, query) => instance.get(url, {
     ...query,
     ...baseQueryParams(),
   },
+}).catch((error) => {
+  throw new Error(error.message);
 });
 
 export { instance as api, get };
