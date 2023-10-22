@@ -29,7 +29,7 @@ function App() {
 
   const loadCharacters = (page) => {
     dispatch(setMarvelLoading());
-    searchCharacters(search, page).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination)))
+    searchCharacters(search, page).then(({ characters, pagination }) => dispatch(setMarvelCharacters(characters, pagination, search)))
       .catch((error) => dispatch(setMarvelError(error.message)));
   };
 
