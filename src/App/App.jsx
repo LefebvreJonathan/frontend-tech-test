@@ -23,6 +23,7 @@ import { searchCharacters } from '../services';
 
 import LoadingPage from './Loading';
 import NotFoundPage from './NotFound';
+import SearchMessagePage from './SearchMessage';
 
 import './App.scss';
 
@@ -60,6 +61,7 @@ function App() {
 				{marvelState.error && <Alert type="error" message={marvelState.error} />}
 				{marvelState.loading && <LoadingPage />}
 				{marvelState.loading === false && marvelState.pagination?.pagesCount === 0 && <NotFoundPage search={marvelState.search} /> }
+				{marvelState.loading === false && !!marvelState.pagination?.pagesCount === false && <SearchMessagePage /> }
 				<section className="lumx-spacing-padding-horizontal-huge characters-list">
 					{marvelState.characters.map((character) => <CharacterBanner key={character.name} character={character} />)}
 				</section>
