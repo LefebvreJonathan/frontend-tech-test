@@ -1,0 +1,17 @@
+.not-found {
+    p {
+        color: lumx-color-variant('dark', 'L3');
+        
+        .search {
+            font-weight: bold;
+            &::before {
+               padding-left: 5px; 
+               content: '"'; 
+            }
+            &::after {
+                padding-right: 5px; 
+                content: '"'; 
+             }
+        }
+    }
+}

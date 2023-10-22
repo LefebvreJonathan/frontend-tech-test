@@ -15,7 +15,7 @@ export const setMarvelError = (errorMessage) => ({
 });
 
 
-export const setMarvelCharacters = (characters, pagination) => ({
+export const setMarvelCharacters = (characters, pagination, search) => ({
   type: MARVEL_SET_CHARACTERS_ACTION,
-  payload: { characters, pagination },
+  payload: { characters, pagination, search },
 });

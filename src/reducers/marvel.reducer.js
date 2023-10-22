@@ -12,6 +12,7 @@ export const marvelReducer = (state, action) => {
         ...state,
         characters: action.payload.characters,
         pagination: action.payload.pagination,
+        search: action.payload.search,
         loading: false,
       };
     case MARVEL_LOADING_ACTION:
@@ -24,6 +25,7 @@ export const marvelReducer = (state, action) => {
       return {
         ...state,
         error: action.payload.error,
+        loading: false,
       };
     default:
       return state;

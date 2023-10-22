@@ -15,3 +15,7 @@
   display: grid;
   gap: 30px;
 }
+
+@import './SearchMessage/index.scss';
+@import './NotFound/index.scss';
+@import './PageWrapper/index.scss';
