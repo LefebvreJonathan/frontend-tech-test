@@ -88,6 +88,13 @@ This will setup the necessary dependencies to execute this project.
 
 The candidate will need to use Node JS v.14 in order to run this project. Not doing so will result in an error. The candidate can install this particular version using [nvm](https://github.com/nvm-sh/nvm).
 
+To use the API, you need to create an account and retrieve the public and private keys from [this address](https://developer.marvel.com/account).
+
+After copying the `.env.example` file to `.env`, fill in the variables:
+- `REACT_APP_MARVEL_API_KEY` with the public key
+- `REACT_APP_MARVEL_PRIVATE_API_KEY` with the private key
+
+
 To start development, the candidate can execute `yarn start`, which will run the app in development mode.
 
 Open [http://develop.lumapps.com:3000/](http://develop.lumapps.com:3000/) to view it in the browser.
